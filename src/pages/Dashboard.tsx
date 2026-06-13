@@ -107,7 +107,7 @@ export default function Dashboard() {
   ];
 
   return (
-    <div className="space-y-8 font-sans">
+    <div className="space-y-8 font-sans animate-fade-in-up">
       {/* Welcome banner */}
       <div className="bg-gradient-to-r from-slate-900 to-indigo-950 p-8 rounded-2xl shadow-xl relative overflow-hidden">
         <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />

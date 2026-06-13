@@ -132,14 +132,14 @@ export default function Reports() {
   };
 
   return (
-    <div className="space-y-8 font-sans">
+    <div className="space-y-8 font-sans animate-fade-in-up">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h2 className="text-3xl font-extrabold font-display text-slate-800 tracking-tight">
+          <h2 className="text-3xl font-extrabold font-display text-slate-800 dark:text-slate-100 tracking-tight">
             Analytics &amp; Reports
           </h2>
-          <p className="text-sm text-slate-500 mt-1">
+          <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">
             Comprehensive academic performance insights and data summaries
           </p>
         </div>
@@ -148,7 +148,7 @@ export default function Reports() {
             <select
               value={selectedCollegeId}
               onChange={e => setSelectedCollegeId(e.target.value)}
-              className="px-4 py-2.5 bg-white border border-slate-200 rounded-xl text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all font-medium"
+              className="px-4 py-2.5 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm text-slate-700 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all font-medium"
             >
               <option value="ALL">All Colleges</option>
               {colleges.map(c => (
@@ -158,7 +158,7 @@ export default function Reports() {
           )}
           <button
             onClick={exportReport}
-            className="inline-flex items-center gap-2 px-4 py-2.5 border border-slate-200 rounded-xl shadow-sm text-sm font-semibold text-slate-700 bg-white hover:bg-slate-50 transition-all cursor-pointer"
+            className="inline-flex items-center gap-2 px-4 py-2.5 border border-slate-200 dark:border-slate-700 rounded-xl shadow-sm text-sm font-semibold text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 transition-all cursor-pointer"
           >
             <Download className="h-4 w-4 text-slate-500" />
             Export Report
@@ -189,8 +189,8 @@ export default function Reports() {
       {/* CGPA Distribution + Status Pie */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* CGPA Distribution Bar */}
-        <div className="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm">
-          <h3 className="text-lg font-bold font-display text-slate-800 mb-5">CGPA Distribution</h3>
+        <div className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-2xl p-6 shadow-sm">
+          <h3 className="text-lg font-bold font-display text-slate-800 dark:text-slate-100 mb-5">CGPA Distribution</h3>
           {filteredStudents.length > 0 ? (
             <div className="space-y-3">
               {cgpaRanges.map((range) => (
@@ -215,8 +215,8 @@ export default function Reports() {
         </div>
 
         {/* Status Donut */}
-        <div className="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm">
-          <h3 className="text-lg font-bold font-display text-slate-800 mb-5">Enrollment Status</h3>
+        <div className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-2xl p-6 shadow-sm">
+          <h3 className="text-lg font-bold font-display text-slate-800 dark:text-slate-100 mb-5">Enrollment Status</h3>
           <div className="h-52">
             {statusData.length > 0 ? (
               <ResponsiveContainer width="100%" height="100%">
@@ -247,8 +247,8 @@ export default function Reports() {
       </div>
 
       {/* Semester Distribution */}
-      <div className="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm">
-        <h3 className="text-lg font-bold font-display text-slate-800 mb-5">Students by Semester</h3>
+      <div className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-2xl p-6 shadow-sm">
+        <h3 className="text-lg font-bold font-display text-slate-800 dark:text-slate-100 mb-5">Students by Semester</h3>
         <div className="h-56">
           {filteredStudents.length > 0 ? (
             <ResponsiveContainer width="100%" height="100%">
@@ -268,34 +268,34 @@ export default function Reports() {
 
       {/* Department Rankings */}
       {deptData.length > 0 && (
-        <div className="bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-sm">
-          <div className="px-6 py-5 border-b border-slate-100 flex items-center justify-between">
-            <h3 className="text-lg font-bold font-display text-slate-800">Department Rankings</h3>
+        <div className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-2xl overflow-hidden shadow-sm">
+          <div className="px-6 py-5 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
+            <h3 className="text-lg font-bold font-display text-slate-800 dark:text-slate-100">Department Rankings</h3>
             <span className="text-xs font-semibold text-slate-400 bg-slate-100 px-3 py-1 rounded-full">Sorted by Avg CGPA</span>
           </div>
           <div className="overflow-x-auto">
             <table className="min-w-full divide-y divide-slate-100">
-              <thead className="bg-slate-50/75">
+              <thead className="bg-slate-50/75 dark:bg-slate-800/50">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-bold text-slate-400 uppercase tracking-wider">Rank</th>
-                  <th className="px-6 py-3 text-left text-xs font-bold text-slate-400 uppercase tracking-wider">Department</th>
-                  <th className="px-6 py-3 text-left text-xs font-bold text-slate-400 uppercase tracking-wider">Students</th>
-                  <th className="px-6 py-3 text-left text-xs font-bold text-slate-400 uppercase tracking-wider">Active</th>
-                  <th className="px-6 py-3 text-left text-xs font-bold text-slate-400 uppercase tracking-wider">Graduated</th>
-                  <th className="px-6 py-3 text-left text-xs font-bold text-slate-400 uppercase tracking-wider">Avg CGPA</th>
+                  <th className="px-6 py-3 text-left text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Rank</th>
+                  <th className="px-6 py-3 text-left text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Department</th>
+                  <th className="px-6 py-3 text-left text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Students</th>
+                  <th className="px-6 py-3 text-left text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Active</th>
+                  <th className="px-6 py-3 text-left text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Graduated</th>
+                  <th className="px-6 py-3 text-left text-xs font-bold text-slate-400 dark:text-slate-500 uppercase tracking-wider">Avg CGPA</th>
                 </tr>
               </thead>
-              <tbody className="bg-white divide-y divide-slate-100">
+              <tbody className="bg-white dark:bg-slate-900 divide-y divide-slate-100 dark:divide-slate-800">
                 {deptData.map((dept, idx) => (
-                  <tr key={dept.name} className="hover:bg-slate-50/50 transition-colors">
+                  <tr key={dept.name} className="hover:bg-slate-50/50 dark:hover:bg-slate-800/30 transition-colors">
                     <td className="px-6 py-3.5 text-sm font-bold text-slate-400">
                       {idx === 0 ? '🥇' : idx === 1 ? '🥈' : idx === 2 ? '🥉' : `#${idx + 1}`}
                     </td>
                     <td className="px-6 py-3.5">
-                      <div className="text-sm font-bold text-slate-800">{dept.fullName}</div>
-                      <div className="text-xs text-slate-400 font-mono">{dept.name}</div>
+                      <div className="text-sm font-bold text-slate-800 dark:text-slate-200">{dept.fullName}</div>
+                      <div className="text-xs text-slate-400 dark:text-slate-500 font-mono">{dept.name}</div>
                     </td>
-                    <td className="px-6 py-3.5 text-sm font-semibold text-slate-600">{dept.students}</td>
+                    <td className="px-6 py-3.5 text-sm font-semibold text-slate-600 dark:text-slate-400">{dept.students}</td>
                     <td className="px-6 py-3.5">
                       <span className="inline-flex items-center px-2 py-0.5 rounded-lg text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-100">
                         {dept.active}
@@ -325,9 +325,9 @@ export default function Reports() {
 
       {/* Top Performers */}
       {topPerformers.length > 0 && (
-        <div className="bg-white border border-slate-100 rounded-2xl overflow-hidden shadow-sm">
-          <div className="px-6 py-5 border-b border-slate-100">
-            <h3 className="text-lg font-bold font-display text-slate-800">Top 10 Performers</h3>
+        <div className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-2xl overflow-hidden shadow-sm">
+          <div className="px-6 py-5 border-b border-slate-100 dark:border-slate-800">
+            <h3 className="text-lg font-bold font-display text-slate-800 dark:text-slate-100">Top 10 Performers</h3>
           </div>
           <div className="overflow-x-auto">
             <table className="min-w-full divide-y divide-slate-100">
@@ -399,8 +399,8 @@ export default function Reports() {
 
       {/* College Comparison (SUPER_ADMIN only) */}
       {role === 'SUPER_ADMIN' && selectedCollegeId === 'ALL' && (
-        <div className="bg-white border border-slate-100 rounded-2xl p-6 shadow-sm">
-          <h3 className="text-lg font-bold font-display text-slate-800 mb-5">College-wise Comparison</h3>
+        <div className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 rounded-2xl p-6 shadow-sm">
+          <h3 className="text-lg font-bold font-display text-slate-800 dark:text-slate-100 mb-5">College-wise Comparison</h3>
           <div className="h-64">
             {colleges.length > 0 ? (
               <ResponsiveContainer width="100%" height="100%">

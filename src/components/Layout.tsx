@@ -52,7 +52,7 @@ export default function Layout() {
   const allowedNavItems = navItems.filter(item => item.roles.includes(currentUser.role));
 
   return (
-    <div className="h-screen flex overflow-hidden bg-slate-50 font-sans">
+    <div className="h-screen flex overflow-hidden bg-slate-50 dark:bg-slate-950 font-sans transition-colors duration-300">
       {/* Mobile sidebar */}
       <div className={`fixed inset-0 flex z-40 md:hidden ${sidebarOpen ? 'block' : 'hidden'}`}>
         <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-sm" onClick={() => setSidebarOpen(false)}></div>
@@ -150,22 +150,22 @@ export default function Layout() {
 
       {/* Main content */}
       <div className="flex flex-col w-0 flex-1 overflow-hidden">
-        <div className="relative z-10 flex-shrink-0 flex h-16 bg-white border-b border-slate-100 shadow-sm">
+        <div className="relative z-10 flex-shrink-0 flex h-16 bg-white dark:bg-slate-900 border-b border-slate-100 dark:border-slate-800 shadow-sm dark:shadow-slate-900/50">
           <button
-            className="px-4 border-r border-slate-100 text-slate-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 md:hidden cursor-pointer"
+            className="px-4 border-r border-slate-100 dark:border-slate-800 text-slate-500 dark:text-slate-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 md:hidden cursor-pointer"
             onClick={() => setSidebarOpen(true)}
           >
             <Menu className="h-6 w-6" />
           </button>
           <div className="flex-1 px-6 flex justify-between">
             <div className="flex-1 flex items-center">
-              <h1 className="text-xl font-bold font-display text-slate-800 hidden sm:block">
+              <h1 className="text-xl font-bold font-display text-slate-800 dark:text-slate-100 hidden sm:block">
                 {allowedNavItems.find(item => location.pathname.startsWith(item.path))?.name || 'Dashboard'}
               </h1>
             </div>
             <div className="ml-4 flex items-center md:ml-6 relative">
               <button
-                className="bg-white p-2 border border-slate-100 rounded-xl text-slate-400 hover:text-slate-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 relative cursor-pointer"
+                className="bg-white dark:bg-slate-800 p-2 border border-slate-100 dark:border-slate-700 rounded-xl text-slate-400 dark:text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 focus:outline-none focus:ring-2 focus:ring-offset-2 dark:focus:ring-offset-slate-900 focus:ring-blue-500 relative cursor-pointer transition-colors"
                 onClick={() => setShowNotifications(!showNotifications)}
               >
                 <span className="sr-only">View notifications</span>
@@ -178,9 +178,9 @@ export default function Layout() {
 
               {/* Notifications Dropdown */}
               {showNotifications && (
-                <div className="origin-top-right absolute right-0 top-12 mt-2 w-80 rounded-2xl shadow-xl py-1 bg-white border border-slate-100 ring-opacity-5 focus:outline-none z-50">
-                  <div className="px-4 py-3 border-b border-slate-100 flex justify-between items-center">
-                    <h3 className="text-sm font-bold text-slate-800">Notifications</h3>
+                <div className="origin-top-right absolute right-0 top-12 mt-2 w-80 rounded-2xl shadow-xl py-1 bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 ring-opacity-5 focus:outline-none z-50">
+                  <div className="px-4 py-3 border-b border-slate-100 dark:border-slate-800 flex justify-between items-center">
+                    <h3 className="text-sm font-bold text-slate-800 dark:text-slate-100">Notifications</h3>
                     <div className="flex items-center gap-2">
                       {unreadCount > 0 && (
                         <button
@@ -193,21 +193,21 @@ export default function Layout() {
                       <span className="text-xs font-semibold text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full">{unreadCount} new</span>
                     </div>
                   </div>
-                  <div className="max-h-96 overflow-y-auto divide-y divide-slate-50">
+                  <div className="max-h-96 overflow-y-auto divide-y divide-slate-50 dark:divide-slate-800">
                     {userNotifications.length === 0 ? (
-                      <p className="px-4 py-6 text-sm text-slate-400 text-center">No new notifications</p>
+                      <p className="px-4 py-6 text-sm text-slate-400 dark:text-slate-500 text-center">No new notifications</p>
                     ) : (
                       userNotifications.map(notification => (
                         <div 
                           key={notification.id} 
-                          className={`px-4 py-3.5 hover:bg-slate-50 cursor-pointer transition-colors ${!notification.isRead ? 'bg-blue-50/20' : ''}`}
+                          className={`px-4 py-3.5 hover:bg-slate-50 dark:hover:bg-slate-800/50 cursor-pointer transition-colors ${!notification.isRead ? 'bg-blue-50/20 dark:bg-blue-950/20' : ''}`}
                           onClick={() => {
                             if (!notification.isRead) markNotificationRead(notification.id);
                           }}
                         >
-                          <p className="text-sm font-semibold text-slate-800">{notification.title}</p>
-                          <p className="text-xs text-slate-500 mt-1">{notification.message}</p>
-                          <p className="text-[10px] text-slate-400 mt-1 font-medium">{formatDistanceToNow(new Date(notification.createdAt), { addSuffix: true })}</p>
+                          <p className="text-sm font-semibold text-slate-800 dark:text-slate-200">{notification.title}</p>
+                          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">{notification.message}</p>
+                          <p className="text-[10px] text-slate-400 dark:text-slate-500 mt-1 font-medium">{formatDistanceToNow(new Date(notification.createdAt), { addSuffix: true })}</p>
                         </div>
                       ))
                     )}
@@ -218,7 +218,7 @@ export default function Layout() {
           </div>
         </div>
 
-        <main className="flex-1 relative overflow-y-auto focus:outline-none bg-slate-50 p-6 sm:p-8">
+        <main className="flex-1 relative overflow-y-auto focus:outline-none bg-slate-50 dark:bg-slate-950 p-6 sm:p-8 transition-colors duration-300">
           <Outlet />
         </main>
       </div>

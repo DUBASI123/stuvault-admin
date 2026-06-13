@@ -45,9 +45,9 @@ type AddFormValues = z.infer<typeof addSchema>;
 type EditFormValues = z.infer<typeof editSchema>;
 
 const STATUS_COLORS: Record<string, string> = {
-  ACTIVE: 'bg-emerald-50 text-emerald-700 border border-emerald-100',
-  GRADUATED: 'bg-blue-50 text-blue-700 border border-blue-100',
-  DROPOUT: 'bg-rose-50 text-rose-700 border border-rose-100',
+  ACTIVE: 'bg-emerald-50 text-emerald-700 border border-emerald-100 dark:bg-emerald-950/40 dark:text-emerald-400 dark:border-emerald-900/50',
+  GRADUATED: 'bg-blue-50 text-blue-700 border border-blue-100 dark:bg-blue-950/40 dark:text-blue-400 dark:border-blue-900/50',
+  DROPOUT: 'bg-rose-50 text-rose-700 border border-rose-100 dark:bg-rose-950/40 dark:text-rose-400 dark:border-rose-900/50',
 };
 
 export default function Students() {
@@ -295,7 +295,7 @@ export default function Students() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100 dark:from-gray-800 dark:via-gray-900 dark:to-black p-6 space-y-8 font-sans">
+    <div className="min-h-screen bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100 dark:from-gray-800 dark:via-gray-900 dark:to-black p-6 space-y-8 font-sans animate-fade-in-up">
       {viewingStudent && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm" onClick={() => setViewingStudent(null)}>
             <div className="glass max-w-lg w-full p-6 relative" onClick={e => e.stopPropagation()}>
@@ -394,7 +394,7 @@ export default function Students() {
             </div>
             <input
               type="text"
-              className="focus:ring-2 focus:ring-blue-500 focus:border-transparent block w-full pl-9 text-sm border-slate-200 bg-white rounded-xl py-2 px-3 border outline-none placeholder-slate-400 transition-all"
+              className="focus:ring-2 focus:ring-blue-500 focus:border-transparent block w-full pl-9 text-sm border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 dark:text-slate-200 dark:placeholder-slate-500 rounded-xl py-2 px-3 border outline-none placeholder-slate-400 transition-all"
               placeholder="Search by name, ticket, email..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
@@ -403,7 +403,7 @@ export default function Students() {
           {canAdd && (
             <button
               onClick={() => setIsAddModalOpen(true)}
-              className="inline-flex items-center px-4 py-2.5 rounded-xl shadow-md text-sm font-semibold text-white bg-gradient-to-r from-indigo-500 to-pink-500 hover:from-indigo-600 hover:to-pink-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all cursor-pointer shadow-indigo-500/10 whitespace-nowrap"
+              className="inline-flex items-center px-4 py-2.5 rounded-xl shadow-md text-sm font-semibold text-white bg-gradient-to-r from-indigo-500 to-pink-500 hover:from-indigo-600 hover:to-pink-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-all cursor-pointer shadow-indigo-500/10 whitespace-nowrap hover-lift"
             >
               <Plus className="-ml-1 mr-1.5 h-5 w-5" />
               Add Student
@@ -414,28 +414,28 @@ export default function Students() {
               <input ref={csvInputRef} type="file" accept=".csv" className="hidden" onChange={handleCSVFile} />
               <button
                 onClick={() => csvInputRef.current?.click()}
-                className="inline-flex items-center px-4 py-2.5 border border-slate-200 rounded-xl shadow-sm text-sm font-semibold text-slate-700 bg-white hover:bg-slate-50 transition-all cursor-pointer whitespace-nowrap"
+                className="inline-flex items-center px-4 py-2.5 border border-slate-200 dark:border-slate-700 rounded-xl shadow-sm text-sm font-semibold text-slate-700 dark:text-slate-300 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 transition-all cursor-pointer whitespace-nowrap"
                 title="Import students from CSV"
               >
-                <Upload className="-ml-1 mr-1.5 h-5 w-5 text-slate-500" />
+                <Upload className="-ml-1 mr-1.5 h-5 w-5 text-slate-500 dark:text-slate-400" />
                 Import CSV
               </button>
               <button
                 onClick={downloadImportTemplate}
-                className="inline-flex items-center px-4 py-2.5 border border-slate-200 rounded-xl shadow-sm text-sm font-semibold text-slate-700 bg-white hover:bg-slate-50 transition-all cursor-pointer whitespace-nowrap"
+                className="inline-flex items-center px-4 py-2.5 border border-slate-200 dark:border-slate-700 rounded-xl shadow-sm text-sm font-semibold text-slate-700 dark:text-slate-300 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 transition-all cursor-pointer whitespace-nowrap"
                 title="Download import template"
               >
-                <Download className="-ml-1 mr-1.5 h-5 w-5 text-slate-500" />
+                <Download className="-ml-1 mr-1.5 h-5 w-5 text-slate-500 dark:text-slate-400" />
                 Download Template
               </button>
             </>
           )}
           <button
             onClick={exportToCSV}
-            className="inline-flex items-center px-4 py-2.5 border border-slate-200 rounded-xl shadow-sm text-sm font-semibold text-slate-700 bg-white hover:bg-slate-50 transition-all cursor-pointer whitespace-nowrap"
+            className="inline-flex items-center px-4 py-2.5 border border-slate-200 dark:border-slate-700 rounded-xl shadow-sm text-sm font-semibold text-slate-700 dark:text-slate-300 bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 transition-all cursor-pointer whitespace-nowrap"
             title="Export to CSV"
           >
-            <Download className="-ml-1 mr-1.5 h-5 w-5 text-slate-500" />
+            <Download className="-ml-1 mr-1.5 h-5 w-5 text-slate-500 dark:text-slate-400" />
             Export CSV
           </button>
         </div>
@@ -452,11 +452,11 @@ export default function Students() {
               className={`inline-flex items-center gap-1.5 px-4 py-1.5 rounded-xl text-sm font-semibold transition-all cursor-pointer ${
                 statusFilter === f
                   ? 'bg-blue-600 text-white shadow-md shadow-blue-500/20'
-                  : 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-50'
+                  : 'bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:bg-slate-50 dark:hover:bg-slate-700'
               }`}
             >
               {f === 'ALL' ? 'All' : f.charAt(0) + f.slice(1).toLowerCase()}
-              <span className={`px-1.5 py-0.5 rounded-lg text-xs font-bold ${statusFilter === f ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-500'}`}>
+              <span className={`px-1.5 py-0.5 rounded-lg text-xs font-bold ${statusFilter === f ? 'bg-white/20 text-white' : 'bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400'}`}>
                 {count}
               </span>
             </button>
@@ -464,21 +464,21 @@ export default function Students() {
         })}
       </div>
 
-      <div className="bg-white border border-slate-100 shadow-sm rounded-2xl overflow-hidden">
+      <div className="bg-white dark:bg-slate-900 border border-slate-100 dark:border-slate-800 shadow-sm rounded-2xl overflow-hidden">
         <div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-slate-100">
-            <thead className="bg-slate-50/75">
+            <thead className="bg-slate-50/75 dark:bg-slate-800/50">
               <tr>
-                <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Student</th>
-                <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Hall Ticket</th>
-                <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Department</th>
-                <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Semester</th>
-                <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">CGPA</th>
-                <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Status</th>
-                {canEdit && <th scope="col" className="px-6 py-4 text-right text-xs font-semibold text-slate-500 uppercase tracking-wider">Actions</th>}
+                <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Student</th>
+                <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Hall Ticket</th>
+                <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Department</th>
+                <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Semester</th>
+                <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">CGPA</th>
+                <th scope="col" className="px-6 py-4 text-left text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Status</th>
+                {canEdit && <th scope="col" className="px-6 py-4 text-right text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">Actions</th>}
               </tr>
             </thead>
-            <tbody className="bg-white divide-y divide-slate-100">
+            <tbody className="bg-white dark:bg-slate-900 divide-y divide-slate-100 dark:divide-slate-800">
               {visibleStudents.length > 0 ? (
                 visibleStudents.map((student) => {
                   const dept = departments.find(d => d.id === student.departmentId);
@@ -490,7 +490,7 @@ export default function Students() {
                     >
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="flex items-center gap-3">
-                          <div className="h-10 w-10 rounded-xl bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 font-bold text-sm flex-shrink-0 overflow-hidden">
+                          <div className="h-10 w-10 rounded-xl bg-blue-50 dark:bg-blue-950/30 border border-blue-100 dark:border-blue-900/30 flex items-center justify-center text-blue-600 dark:text-blue-400 font-bold text-sm flex-shrink-0 overflow-hidden">
                             {student.photoUrl ? (
                               <img src={student.photoUrl} alt={student.name} className="w-full h-full object-cover" />
                             ) : (
@@ -498,19 +498,19 @@ export default function Students() {
                             )}
                           </div>
                           <div>
-                            <div className="text-sm font-bold text-slate-800">{student.name}</div>
-                            <div className="text-xs text-slate-400">{student.email}</div>
+                            <div className="text-sm font-bold text-slate-800 dark:text-slate-200">{student.name}</div>
+                            <div className="text-xs text-slate-400 dark:text-slate-500">{student.email}</div>
                           </div>
                         </div>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-500 font-mono font-medium">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-500 dark:text-slate-400 font-mono font-medium">
                         {student.hallTicket}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-500">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-500 dark:text-slate-400">
                         {dept?.name || '-'}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-500">
-                        <span className="font-semibold text-slate-700 bg-slate-100 px-2.5 py-0.5 rounded-lg text-xs">
+                        <span className="font-semibold text-slate-700 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 px-2.5 py-0.5 rounded-lg text-xs">
                           Sem {student.semester}
                         </span>
                       </td>
@@ -554,9 +554,9 @@ export default function Students() {
               ) : (
                 <tr>
                   <td colSpan={canEdit ? 7 : 6} className="px-6 py-12 whitespace-nowrap text-sm text-slate-400 text-center">
-                    <GraduationCap className="h-12 w-12 text-slate-300 mx-auto mb-3" />
-                    <p className="text-lg font-medium text-slate-600">No students registered</p>
-                    <p className="text-xs mt-1">{searchTerm ? 'No results match your search.' : 'Roster is empty.'}</p>
+                    <GraduationCap className="h-12 w-12 text-slate-300 dark:text-slate-600 mx-auto mb-3" />
+                    <p className="text-lg font-medium text-slate-600 dark:text-slate-400">No students registered</p>
+                    <p className="text-xs mt-1 dark:text-slate-500">{searchTerm ? 'No results match your search.' : 'Roster is empty.'}</p>
                   </td>
                 </tr>
               )}
